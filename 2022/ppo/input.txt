@@ -1,0 +1,10 @@
+9
+short abcdEFGH1234!*-?
+veryverylongpassw abcdEFGH1234!*-?
+ALLUPPER abcdEFGH1234!*-?
+UpperLower abcdEFGH1234!*-?
+P4ssword! abcdEFGH1234!*-?
+bcdEFGH1234!*-? abcdEFGH1234!*-?
+xabcdEFGH1234!*-? abcdEFGH1234!*-?
+xbcdEFGH1234!*-? abcdEFGH1234!*-?
+?3CuR3P4s? w0rdabcdEFGH1234!*-?
