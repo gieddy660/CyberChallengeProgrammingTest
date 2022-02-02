@@ -26,23 +26,26 @@ def conta(N, K, ranges):
             if start in r and (end - 1) in r:
                 if range(r.start, start):
                     new_auxiliary[range(r.start, start)] = val
-                new_auxiliary[range(start, end)] = val + 1
+                if val + 1 <= K:
+                    new_auxiliary[range(start, end)] = val + 1
                 if range(end, r.stop):
                     new_auxiliary[range(end, r.stop)] = val
 
             elif start in r:
                 if range(r.start, start):
                     new_auxiliary[range(r.start, start)] = val
-                new_auxiliary[range(start, r.stop)] = val + 1
-                'add range'
+                if val + 1 <= K:
+                    new_auxiliary[range(start, r.stop)] = val + 1
 
             elif (end - 1) in r:
-                new_auxiliary[range(r.start, end)] = val + 1
+                if val + 1 <= K:
+                    new_auxiliary[range(r.start, end)] = val + 1
                 if range(end, r.stop):
                     new_auxiliary[range(end, r.stop)] = val
 
             elif r.start in range(start, end) and r.stop in range(start, end):
-                new_auxiliary[r] = val + 1
+                if val + 1 <= K:
+                    new_auxiliary[r] = val + 1
 
             else:
                 new_auxiliary[r] = val
