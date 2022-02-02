@@ -7,13 +7,54 @@ import sys
 # fout = open("output.txt", "w")  # File di output fornito dalla piattaforma
 
 # Se vuoi leggere/scrivere da linea di comando decommenta qua
-fin = sys.stdin  # File di input fornito dalla piattaforma
-fout = sys.stdout  # File di output fornito dalla piattaforma
+# fin = sys.stdin  # File di input fornito dalla piattaforma
+# fout = sys.stdout  # File di output fornito dalla piattaforma
 
 
 def conta(N, K, ranges):
-    # SCRIVI QUA IL TUO CODICE
-    return 0
+    if K > N:
+        return 0
+
+    minim = min((r[0]) for r in ranges)
+    maxim = max((r[1]) for r in ranges)
+
+    auxiliary = {range(minim, maxim): 0}
+
+    for start, end in ranges:
+        new_auxiliary = dict()
+        for r, val in auxiliary.items():
+            if start in r and (end - 1) in r:
+                if range(r.start, start):
+                    new_auxiliary[range(r.start, start)] = val
+                new_auxiliary[range(start, end)] = val + 1
+                if range(end, r.stop):
+                    new_auxiliary[range(end, r.stop)] = val
+
+            elif start in r:
+                if range(r.start, start):
+                    new_auxiliary[range(r.start, start)] = val
+                new_auxiliary[range(start, r.stop)] = val + 1
+                'add range'
+
+            elif (end - 1) in r:
+                new_auxiliary[range(r.start, end)] = val + 1
+                if range(end, r.stop):
+                    new_auxiliary[range(end, r.stop)] = val
+
+            elif r.start in range(start, end) and r.stop in range(start, end):
+                new_auxiliary[r] = val + 1
+
+            else:
+                new_auxiliary[r] = val
+
+        auxiliary = new_auxiliary
+
+    res = 0
+    for r, val in auxiliary.items():
+        if val == K:
+            res += len(r)
+
+    return res
 
 
 if __name__ == '__main__':
@@ -25,6 +66,6 @@ if __name__ == '__main__':
 
     for _ in range(N):
         start, end = map(int, fin.readline().strip().split(" "))
-        ranges.append([start, end])
+        ranges.append([start, end + 1])
 
     print(conta(N, K, ranges), file=fout)
